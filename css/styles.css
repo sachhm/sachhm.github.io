@@ -1,0 +1,13 @@
+html{
+    margin: 2em;
+}
+
+.hero{
+    text-align: center;
+    font-size: large;
+}
+
+.portfolio{
+    border:1px solid black;
+
+}
