@@ -1,140 +1,35 @@
-/* Shared styles for HTML and fonts */
-html,
-h1,
-h2,
-p,
-#nav,
-#footer {
-    font-family: 'JetBrains Mono', monospace;
-    text-align: center;
-}
-
-/* Background color and common styles for HTML */
+/* General Page Styling */
 html {
-    height: 100%;
-    background: linear-gradient(180deg, #F2F6F9, #BDD5EA 99%) no-repeat;
-    background-size: cover;
-    color: #333;
-    /* Adjust text color for better readability on light backgrounds */
-}
-
-#heading {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
 
-/* Common styles for text */
-h1 {
-    font-weight: 400;
-    font-size: 48px;
-    /* Slightly reduce the font size for a more balanced look */
+a {
+    color: white;
+    text-decoration: none;
 }
 
-h2 {
-    font-weight: 200;
-    font-size: 32px;
+a:hover {
+    color: black;
+    background-color: white;
 }
 
-p,
-#nav a {
-    font-weight: 100;
-    font-size: 16px;
-    /* Adjust font size for better readability */
+#heading, #about {
+    width: 60%;            
+    margin: 20px auto;      
+    padding: 20px;          
+    text-align: left;
 }
 
-/* Media queries for adjusting font size on different screens */
-@media (max-width: 600px) {
-
-    p,
-    #nav a {
-        font-size: 14px;
-    }
+#nav {
+    margin-bottom: 20px;
 }
 
-@media (min-width: 601px) and (max-width: 900px) {
-
-    p,
-    #nav a {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 901px) {
-
-    p,
-    #nav a {
-        font-size: 18px;
-    }
-}
-
-#content {
-    margin: 4em 8em;
-    padding-left: 3em;
-    padding-right: 3em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    border: solid black;
-    text-align: center;
-    font-size: 16px;
-}
-
-/* Common styles for #nav and #footer */
-#nav,
 #footer {
-    font-weight: 100;
-    font-size: 18px;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    text-align: center;
-}
-
-/* Add background images to #nav links */
-#nav a {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    text-indent: -9999px; /* Hide the link text */
-    margin: 0 15px;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    transition: border 0.3s ease;
-}
-
-#nav a:hover {
-    border: 2px solid #333; /* Add a border when hovered */
-}
-
-#nav a.linkedin {
-    background-image: url('../img/LI-In-Bug.png'); /* One level up to reach img */
-}
-
-#nav a.github {
-    background-image: url('../img/github-mark-white.png'); /* One level up to reach img */
-}
-
-/* Styles for #content */
-#content {
-    text-align: center;
-    font-size: 20px;
-}
-
-/* Styles for #footer */
-#footer {
-    color: #555;
-    text-align: center;
-    margin: 2em 20%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1em;
-}
-
-/* Common styles for #content, #nav, and #footer */
-#content,
-#nav,
-#footer {
-    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 10px;
+    opacity: 0.8;
 }
