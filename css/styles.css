@@ -47,7 +47,7 @@ a:hover {
     color: #e0e0e0;
 }
 
-#heading h1, #about h2, #projects h2 {
+#heading h2, #about h2, #projects h2 {
     color: #82cdff;
     font-weight: bold;
 }
