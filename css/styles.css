@@ -1,35 +1,94 @@
-/* General Page Styling */
 html {
-    background-color: black;
-    color: white;
-    font-size: 1em;
+    background-color: #121212;
+    color: #f0f0f0;
+    font-size: 1.4em;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 a {
-    color: white;
+    color: #4db8ff;
     text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 a:hover {
     color: black;
-    background-color: white;
-}
-
-#heading, #about {
-    width: 60%;            
-    margin: 20px auto;      
-    padding: 20px;          
-    text-align: left;
+    background-color: #4db8ff;
+    padding: 2px 3px;
+    border-radius: 3px;
 }
 
 #nav {
     margin-bottom: 20px;
+    padding: 10px 0;
+    opacity: 0.7;
+    background-color: #1f1f1f;
+    color: #999999;
 }
 
+#heading, #about, #projects {
+    font-size: .9em;
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    color: #e0e0e0;
+}
+
+#heading h1, #about h2, #projects h2 {
+    color: #82cdff;
+    font-weight: bold;
+}
+
+#fname, #lname {
+    display: inline-block;
+}
+
+#lname {
+    color: #1f1f1f;
+    text-shadow:
+        -1px -1px 0 #82cdff,
+         1px -1px 0 #82cdff,  
+        -1px  1px 0 #82cdff, 
+         1px  1px 0 #82cdff;
+}
+
+.styled-list {
+    list-style-type: none;
+    padding: 0; 
+}
+
+.styled-list li {
+    color: #4db8ff;
+}
+
+#projects p {
+    margin: 0.4em;
+}
+
+
 #footer {
-    margin-top: 20px;
-    font-size: 10px;
-    opacity: 0.8;
+    margin-top: auto;
+    padding: 10px 0;
+    opacity: 0.7;
+    background-color: #1f1f1f;
+    color: #999999;
+}
+
+p.separator {
+    color: #4db8ff;
+    font-weight: bold;
+    text-align: center;
 }
