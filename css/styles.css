@@ -15,7 +15,7 @@ body {
 }
 
 a {
-    color: #e0e0e0;
+    color: #e0e0e0c4;
     text-decoration: none;
     transition: color 0.3s ease, background-color 0.3s ease;
 }
