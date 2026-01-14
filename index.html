@@ -1,58 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <title>sachh moka</title>
-</head>
-
-<body class="shiny">
-    <div id="nav">
-        <p class="separator">---------------------</p>
-        <a href="https://linkedin.com/in/sachh-moka" class="linkedin" title="LinkedIn" target="_blank">/linkedin</a>
-        <a href="https://github.com/sachhm" class="github" title="GitHub" target="_blank">/github</a>
-        <p class="separator">---------------------</p>
-    </div>
-    
-
-    <div id="content">
-        <div id="heading">
-            <h2> <div id= "first"> sachh </div> <div id= "last">moka </div> </h2>
-            <p>information technology student at <a href="https://www.jcu.edu.au/" target="_blank">james cook university</a></p>
-            <p>jr. swift dev at <a href="https://www.mafint.org/" target="_blank">maf international</a></p>
-        </div>
-    
-        <div id="about"> 
-            <h2><div id= "first">about</div> <div id="last">me</div></h2>
-            <p>I am a final year Information Technology student at James Cook University in Cairns, Australia. I work part time as a Junior Swift Developer at Mission Aviation Fellowship International, where I work on an internal Electronic Flight Bag (EFB) iOS app used by MAF pilots. </p>
-            
-            <p>Please reach out to me on LinkedIn if you're interested in connecting with me!</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <title>Sachh Moka</title>
+    </head>
+    <body>
+        <div id="nav">
+            <a href="https://linkedin.com/in/sachh-moka" target="_blank"
+                >/linkedin</a
+            >
+            <a href="https://github.com/sachhm" target="_blank">/github</a>
         </div>
 
-        <div id="projects">
-            <h2><div id="first">my</div> <div id="last">projects</div></h2>
-            <ul class="styled-list">
-                <li><a href="https://github.com/sachhm/stoicity" target="_blank">stoicity (Python, HTML, CSS, Flask)</a>
-                    <p>a simple web app that displays Stoic quotes.</p></li>
-                <li><a href="https://github.com/sachhm/pilot-logger" target="_blank">pilot-logger (Swift, SwiftUI)</a>
-                    <p>a simple app to track weather using the Open-Meteo API.</p></li>
-                <li><a href="https://github.com/sachhm/weather-app" target="_blank">weather-app (Python, HTML, CSS, Open-Meteo API)</a>
-                    <p>a simple iOS flight log app.</p></li>
-                <li><a href="https://github.com/sachhm/qld-rfs-locator" target="_blank">qld-rfs-locator (Python, HTML, CSS)</a>
-                    <p>a simple app to find the nearest QLD Rural Fire Station.</p></li>
-            </ul>
+        <!-- Terminal Container -->
+        <div id="terminal-container">
+            <div id="terminal-window">
+                <div id="terminal-header">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                    <span class="terminal-title">terminal — sachh@moka</span>
+                </div>
+                <div id="terminal-body">
+                    <div id="terminal-output"></div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div id="footer">
-         <p class="separator">---------------------</p>
-        <p>© 2024 Sachh Moka. Built with raw HTML and CSS by yours truly :) </p>
-         <p class="separator">---------------------</p>
-    </div>
-
-    <script src="js/script.js"></script>
-
-</body>
+        <footer class="footer-wrapper">
+            <div id="footer">© 2026 Sachh Moka. All rights reserved.</div>
+        </footer>
+        <script src="js/script.js"></script>
+    </body>
 </html>

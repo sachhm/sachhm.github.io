@@ -1,80 +1,95 @@
-// Neural network background animation
-document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+// Terminal typing effect
+const terminalLines = [
+  "$ whoami",
+  "> sachh moka // bachelor of IT @ JCU",
+  "$ cat about.txt",
+  "> driven new grad with a growing portfolio in software development. previous experience as it intern in 2 countries",
+  "$ grep -r 'passion' ~/interests/",
+  "> ai-driven systems | aviation tech | solving problems in remote regions",
+  "$ ls skills/",
+  "> python/  swift/  web_dev/  it_support/  hardware_repair/",
+  "$ echo $LANGUAGES",
+  "> english | hindi | tok pisin | python | swift | javascript",
+  "$ cat status.txt",
+  "> building tech that works where it matters most.",
+  "_",
+];
 
-  // Position canvas as background
-  canvas.style.position = "fixed";
-  canvas.style.top = "0";
-  canvas.style.left = "0";
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
-  canvas.style.zIndex = "-1"; // Behind all content
-  canvas.style.pointerEvents = "none"; // Doesn't block interaction
-  document.body.prepend(canvas);
+let currentLine = 0;
+let currentChar = 0;
+let isDeleting = false;
 
-  // Adjust resolution on resize
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas();
+function typeTerminal() {
+  const terminal = document.getElementById("terminal-output");
+  if (!terminal) return;
 
-  // Node settings
-  const nodes = [];
-  const nodeCount = 50; // Adjust for density
-  const maxDistance = 150; // Max distance for connecting lines
+  if (currentLine < terminalLines.length) {
+    const line = terminalLines[currentLine];
+    const isCommand = line.startsWith("$");
+    const isPrompt = line.startsWith(">");
 
-  for (let i = 0; i < nodeCount; i++) {
-    nodes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 4 + 2, // radius
-      dx: (Math.random() - 0.5) * 0.7, // velocity X
-      dy: (Math.random() - 0.5) * 0.7, // velocity Y
-    });
-  }
+    if (currentChar < line.length) {
+      // Typing out current line
+      currentChar++;
+      const textSoFar = line.substring(0, currentChar);
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Build the HTML for all completed lines plus current line
+      let html = "";
+      for (let i = 0; i < currentLine; i++) {
+        const prevLine = terminalLines[i];
+        const prevIsCommand = prevLine.startsWith("$");
+        const prevIsPrompt = prevLine.startsWith(">");
 
-    // Draw connections
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDistance) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(130, 205, 255, ${1 - dist / maxDistance})`;
-          ctx.lineWidth = 1;
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
+        if (prevIsCommand) {
+          html += `<div class="terminal-line command">${prevLine}</div>`;
+        } else if (prevIsPrompt) {
+          html += `<div class="terminal-line output">${prevLine}</div>`;
+        } else {
+          html += `<div class="terminal-line">${prevLine}</div>`;
         }
       }
+
+      // Add current line being typed
+      if (isCommand) {
+        html += `<div class="terminal-line command">${textSoFar}<span class="cursor">|</span></div>`;
+      } else if (isPrompt) {
+        html += `<div class="terminal-line output">${textSoFar}<span class="cursor">|</span></div>`;
+      } else {
+        html += `<div class="terminal-line">${textSoFar}<span class="cursor">|</span></div>`;
+      }
+
+      terminal.innerHTML = html;
+
+      // Faster typing for commands, slower for output
+      const typingSpeed = isCommand ? 50 : 30;
+      setTimeout(typeTerminal, typingSpeed);
+    } else {
+      // Finished current line, move to next
+      currentLine++;
+      currentChar = 0;
+      setTimeout(typeTerminal, 600); // Pause between lines
     }
+  } else {
+    // All lines typed, show blinking cursor
+    let html = "";
+    for (let i = 0; i < terminalLines.length; i++) {
+      const line = terminalLines[i];
+      const lineIsCommand = line.startsWith("$");
+      const lineIsPrompt = line.startsWith(">");
 
-    // Draw nodes
-    for (let n of nodes) {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2, false);
-      ctx.fillStyle = "rgba(130, 205, 255, 0.9)";
-      ctx.fill();
-
-      // Update position
-      n.x += n.dx;
-      n.y += n.dy;
-
-      // Bounce off walls
-      if (n.x < 0 || n.x > canvas.width) n.dx *= -1;
-      if (n.y < 0 || n.y > canvas.height) n.dy *= -1;
+      if (lineIsCommand) {
+        html += `<div class="terminal-line command">${line}</div>`;
+      } else if (lineIsPrompt) {
+        html += `<div class="terminal-line output">${line}</div>`;
+      } else {
+        html += `<div class="terminal-line">${line}</div>`;
+      }
     }
-
-    requestAnimationFrame(draw);
+    terminal.innerHTML = html;
   }
+}
 
-  draw();
+// Start typing when page loads
+window.addEventListener("DOMContentLoaded", () => {
+  setTimeout(typeTerminal, 500);
 });
