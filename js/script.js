@@ -1,95 +1,70 @@
-// Terminal typing effect
-const terminalLines = [
-  "$ whoami",
-  "> sachh moka // bachelor of IT @ JCU",
-  "$ cat about.txt",
-  "> driven new grad with a growing portfolio in software development. previous experience as it intern in 2 countries",
-  "$ grep -r 'passion' ~/interests/",
-  "> ai-driven systems | aviation tech | solving problems in remote regions",
-  "$ ls skills/",
-  "> python/  swift/  web_dev/  it_support/  hardware_repair/",
-  "$ echo $LANGUAGES",
-  "> english | hindi | tok pisin | python | swift | javascript",
-  "$ cat status.txt",
-  "> building tech that works where it matters most.",
-  "_",
-];
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("globe-container");
+  const locationEl = document.getElementById("location");
+  if (!container) return;
 
-let currentLine = 0;
-let currentChar = 0;
-let isDeleting = false;
+  // Wireframe globe - dark with glowing outlines
+  const globe = Globe()
+    .backgroundColor("rgba(0,0,0,0)")
+    .showGlobe(true)
+    .globeImageUrl("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23080810' width='1' height='1'/%3E%3C/svg%3E")
+    .showAtmosphere(false)
+    .polygonCapColor(() => "rgba(0, 20, 40, 0.8)")
+    .polygonSideColor(() => "rgba(0, 50, 80, 0.5)")
+    .polygonStrokeColor(() => "#4db8ff")
+    .polygonAltitude(0.01)
+    .pointsData([])
+    .pointColor(() => "#4db8ff")
+    .pointAltitude(0.02)
+    .pointRadius(0.6)
+    (container);
 
-function typeTerminal() {
-  const terminal = document.getElementById("terminal-output");
-  if (!terminal) return;
+  // Set size
+  globe.width(container.offsetWidth);
+  globe.height(container.offsetHeight);
 
-  if (currentLine < terminalLines.length) {
-    const line = terminalLines[currentLine];
-    const isCommand = line.startsWith("$");
-    const isPrompt = line.startsWith(">");
+  // Auto-rotate
+  globe.controls().autoRotate = true;
+  globe.controls().autoRotateSpeed = 0.5;
 
-    if (currentChar < line.length) {
-      // Typing out current line
-      currentChar++;
-      const textSoFar = line.substring(0, currentChar);
+  // Handle resize
+  window.addEventListener("resize", function () {
+    globe.width(container.offsetWidth);
+    globe.height(container.offsetHeight);
+  });
 
-      // Build the HTML for all completed lines plus current line
-      let html = "";
-      for (let i = 0; i < currentLine; i++) {
-        const prevLine = terminalLines[i];
-        const prevIsCommand = prevLine.startsWith("$");
-        const prevIsPrompt = prevLine.startsWith(">");
+  // Load country polygons
+  fetch("https://unpkg.com/world-atlas@2/countries-110m.json")
+    .then((res) => res.json())
+    .then((worldData) => {
+      const countries = topojson.feature(worldData, worldData.objects.countries);
+      globe.polygonsData(countries.features);
+    });
 
-        if (prevIsCommand) {
-          html += `<div class="terminal-line command">${prevLine}</div>`;
-        } else if (prevIsPrompt) {
-          html += `<div class="terminal-line output">${prevLine}</div>`;
-        } else {
-          html += `<div class="terminal-line">${prevLine}</div>`;
-        }
+  // Fetch visitor location
+  fetch("https://get.geojs.io/v1/ip/geo.json")
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.latitude && data.longitude) {
+        // Update greeting
+        const place = data.city || data.country || "Earth";
+        const lat = parseFloat(data.latitude);
+        const lng = parseFloat(data.longitude);
+        if (locationEl) locationEl.textContent = place;
+
+        // Add marker
+        globe.pointsData([{ lat: lat, lng: lng }]);
+
+        // Fly to location
+        globe.pointOfView({ lat: lat, lng: lng, altitude: 2 }, 2000);
+
+        // Stop rotation after animation
+        setTimeout(() => {
+          globe.controls().autoRotate = false;
+        }, 2000);
       }
-
-      // Add current line being typed
-      if (isCommand) {
-        html += `<div class="terminal-line command">${textSoFar}<span class="cursor">|</span></div>`;
-      } else if (isPrompt) {
-        html += `<div class="terminal-line output">${textSoFar}<span class="cursor">|</span></div>`;
-      } else {
-        html += `<div class="terminal-line">${textSoFar}<span class="cursor">|</span></div>`;
-      }
-
-      terminal.innerHTML = html;
-
-      // Faster typing for commands, slower for output
-      const typingSpeed = isCommand ? 50 : 30;
-      setTimeout(typeTerminal, typingSpeed);
-    } else {
-      // Finished current line, move to next
-      currentLine++;
-      currentChar = 0;
-      setTimeout(typeTerminal, 600); // Pause between lines
-    }
-  } else {
-    // All lines typed, show blinking cursor
-    let html = "";
-    for (let i = 0; i < terminalLines.length; i++) {
-      const line = terminalLines[i];
-      const lineIsCommand = line.startsWith("$");
-      const lineIsPrompt = line.startsWith(">");
-
-      if (lineIsCommand) {
-        html += `<div class="terminal-line command">${line}</div>`;
-      } else if (lineIsPrompt) {
-        html += `<div class="terminal-line output">${line}</div>`;
-      } else {
-        html += `<div class="terminal-line">${line}</div>`;
-      }
-    }
-    terminal.innerHTML = html;
-  }
-}
-
-// Start typing when page loads
-window.addEventListener("DOMContentLoaded", () => {
-  setTimeout(typeTerminal, 500);
+    })
+    .catch(() => {
+      // Keep default "Earth" on error
+    });
 });

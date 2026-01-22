@@ -54,101 +54,43 @@ a:hover {
     transform: scale(1.08);
 }
 
-/* ===== Terminal ===== */
-#terminal-container {
+/* ===== Globe Section ===== */
+#globe-section {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
 }
 
-#terminal-window {
-    width: 90%;
-    max-width: 700px;
+#globe-container {
+    width: 100%;
+    max-width: 1200px;
+    height: min(900px, 60vh);
+}
+
+#greeting {
+    margin-top: 20px;
+    padding: 12px 24px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    overflow: hidden;
+    border-radius: 16px;
+    color: #e0e0e0;
+    font-size: 0.9em;
 }
 
-#terminal-header {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.terminal-button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-.terminal-button.red {
-    background: #ff5f56;
-}
-
-.terminal-button.yellow {
-    background: #ffbd2e;
-}
-
-.terminal-button.green {
-    background: #27c93f;
-}
-
-.terminal-title {
-    margin-left: auto;
-    font-size: 0.7em;
-    color: rgba(240, 240, 240, 0.6);
-}
-
-#terminal-body {
-    padding: 20px;
-    min-height: 300px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.85em;
-    text-align: left;
-}
-
-#terminal-output {
-    color: #00ff00;
-}
-
-.terminal-line {
-    margin: 8px 0;
-    line-height: 1.6;
-}
-
-.terminal-line.command {
+#location {
     color: #4db8ff;
 }
 
-.terminal-line.output {
-    color: #00ff00;
-    margin-left: 0;
-}
-
-.cursor {
-    color: #00ff00;
-    animation: blink 1s infinite;
-    font-weight: bold;
-}
-
-@keyframes blink {
-    0%,
-    50% {
-        opacity: 1;
-    }
-    51%,
-    100% {
-        opacity: 0;
-    }
+#disclaimer {
+    font-size: 0.65em;
+    color: rgba(224, 224, 224, 0.5);
+    margin-top: 6px;
 }
 
 /* ===== Footer ===== */
@@ -185,12 +127,7 @@ p.separator {
         font-size: 1.1em;
     }
 
-    #terminal-window {
-        width: 95%;
-    }
-
-    #terminal-body {
-        font-size: 0.75em;
-        padding: 15px;
+    #globe-container {
+        height: min(600px, 50vh);
     }
 }

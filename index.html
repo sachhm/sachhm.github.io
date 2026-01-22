@@ -14,24 +14,18 @@
             <a href="https://github.com/sachhm" target="_blank">/github</a>
         </div>
 
-        <!-- Terminal Container -->
-        <div id="terminal-container">
-            <div id="terminal-window">
-                <div id="terminal-header">
-                    <div class="terminal-button red"></div>
-                    <div class="terminal-button yellow"></div>
-                    <div class="terminal-button green"></div>
-                    <span class="terminal-title">terminal — sachh@moka</span>
-                </div>
-                <div id="terminal-body">
-                    <div id="terminal-output"></div>
-                </div>
+        <main id="globe-section">
+            <div id="globe-container"></div>
+            <div id="greeting">Hello, visitor from <span id="location">Earth</span>
+                <div id="disclaimer">Location based on IP - may not be exact</div>
             </div>
-        </div>
+        </main>
 
         <footer class="footer-wrapper">
             <div id="footer">© 2026 Sachh Moka. All rights reserved.</div>
         </footer>
+        <script src="https://unpkg.com/globe.gl"></script>
+        <script src="https://unpkg.com/topojson-client@3"></script>
         <script src="js/script.js"></script>
     </body>
 </html>
