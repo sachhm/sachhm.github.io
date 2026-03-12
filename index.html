@@ -3,29 +3,117 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Sachh Moka — software developer, Bachelor of IT at James Cook University."
+        />
+        <meta property="og:title" content="Sachh Moka" />
+        <meta
+            property="og:description"
+            content="Software developer. Bachelor of IT at James Cook University."
+        />
+        <meta property="og:type" content="website" />
         <link rel="stylesheet" href="css/styles.css" />
         <title>Sachh Moka</title>
     </head>
     <body>
-        <div id="nav">
-            <a href="https://linkedin.com/in/sachh-moka" target="_blank"
-                >/linkedin</a
-            >
-            <a href="https://github.com/sachhm" target="_blank">/github</a>
+        <div class="container">
+            <header>
+                <nav>
+                    <a href="https://github.com/sachhm" target="_blank"
+                        >/github</a
+                    >
+                    <a
+                        href="https://linkedin.com/in/sachh-moka"
+                        target="_blank"
+                        >/linkedin</a
+                    >
+                </nav>
+                <h1>Sachh Ariel Moka</h1>
+                <p class="subtitle">Bachelor of IT, James Cook University</p>
+            </header>
+
+            <main>
+                <section>
+                    <p>
+                        Information Technology graduate specialising in software development and IT support. 
+                        Quick to learn new technologies and focused on building practical solutions.
+                        Strong communicator with experience working across diverse teams.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Skills</h2>
+                    <p class="skills">
+                        Python / Swift / C++ / JavaScript
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Interests</h2>
+                    <p class="interests">
+                        Audio Engineering / Aviation Technology / Machine Learning
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Projects</h2>
+                    <ul class="projects">
+                        <li>
+                            <a
+                                href="https://github.com/sachhm/Blackheart"
+                                target="_blank"
+                                >Blackheart</a
+                            >
+                            <span class="dash">&mdash;</span>
+                            Analog octave fuzz meets digital pitch shifting and
+                            modulation. C++ audio plugin.
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/sachhm/pilot-logger"
+                                target="_blank"
+                                >pilot-logger</a
+                            >
+                            <span class="dash">&mdash;</span>
+                            iOS flight log app built with Swift.
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/sachhm/qld-rfs-locator"
+                                target="_blank"
+                                >qld-rfs-locator</a
+                            >
+                            <span class="dash">&mdash;</span>
+                            Find the nearest QLD Rural Fire Station from any
+                            address. Python.
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/sachhm/weather-app"
+                                target="_blank"
+                                >weather-app</a
+                            >
+                            <span class="dash">&mdash;</span>
+                            Weather tracker using the Open-Meteo API with
+                            IP-based location. Python.
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/sachhm/stoicity"
+                                target="_blank"
+                                >stoicity</a
+                            >
+                            <span class="dash">&mdash;</span>
+                            A simple web app that displays Stoic quotes.
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <footer>
+                <p>&copy; 2026 Sachh Moka. All rights reserved.</p>
+            </footer>
         </div>
-
-        <main id="globe-section">
-            <div id="globe-container"></div>
-            <div id="greeting">Hello, visitor from <span id="location">Earth</span>
-                <div id="disclaimer">Location based on IP - may not be exact</div>
-            </div>
-        </main>
-
-        <footer class="footer-wrapper">
-            <div id="footer">© 2026 Sachh Moka. All rights reserved.</div>
-        </footer>
-        <script src="https://unpkg.com/globe.gl"></script>
-        <script src="https://unpkg.com/topojson-client@3"></script>
-        <script src="js/script.js"></script>
     </body>
 </html>
