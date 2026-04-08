@@ -6,6 +6,16 @@
     padding: 0;
 }
 
+#aberration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
 html {
     background: #0a0a0a;
     color: #c8c8c8;
@@ -28,6 +38,8 @@ body {
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 640px;
     width: 100%;
     padding: 20vh 24px 48px;
@@ -79,10 +91,11 @@ h2 {
 a {
     color: #888;
     text-decoration: none;
+    transition: color 0.25s ease;
 }
 
 a:hover {
-    color: #e0e0e0;
+    color: #e0c8c8;
 }
 
 .projects {
@@ -94,11 +107,17 @@ a:hover {
 }
 
 .projects a {
-    color: #c8c8c8;
+    color: #888;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    display: inline;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1px;
 }
 
 .projects a:hover {
-    color: #e0e0e0;
+    color: #e0c8c8;
+    border-bottom-color: #e0c8c8;
 }
 
 .dash {
@@ -115,6 +134,31 @@ footer p {
     color: #444;
     font-size: 0.8rem;
 }
+
+/* --- Entrance animations --- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header,
+main > section,
+footer {
+    animation: fadeUp 0.6s ease both;
+}
+
+header { animation-delay: 0.1s; }
+main > section:nth-child(1) { animation-delay: 0.2s; }
+main > section:nth-child(2) { animation-delay: 0.3s; }
+main > section:nth-child(3) { animation-delay: 0.4s; }
+main > section:nth-child(4) { animation-delay: 0.5s; }
+footer { animation-delay: 0.6s; }
 
 @media (max-width: 600px) {
     .container {
