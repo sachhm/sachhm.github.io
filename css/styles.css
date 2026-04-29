@@ -55,10 +55,27 @@ h1 {
     letter-spacing: -0.02em;
 }
 
+.tagline {
+    margin-top: 12px;
+    color: #c8c8c8;
+    font-size: 1rem;
+}
+
 .subtitle {
-    margin-top: 8px;
+    margin-top: 6px;
     color: #666;
     font-size: 0.9rem;
+}
+
+nav .cta {
+    color: #e0c8c8;
+    border-bottom: 1px solid #e0c8c8;
+    padding-bottom: 1px;
+    margin-left: auto;
+}
+
+nav {
+    align-items: center;
 }
 
 main {
@@ -82,10 +99,71 @@ nav {
 }
 
 h2 {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 400;
-    color: #666;
+    color: #888;
     margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid #1f1f1f;
+    padding-bottom: 8px;
+}
+
+.services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.services-list li {
+    padding-left: 16px;
+    position: relative;
+}
+
+.services-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: #e0c8c8;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 24px;
+    row-gap: 8px;
+    font-size: 0.9rem;
+}
+
+.skills-grid dt {
+    color: #666;
+}
+
+.skills-grid dd {
+    color: #c8c8c8;
+}
+
+.tags {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.tag {
+    font-size: 0.7rem;
+    color: #888;
+    border: 1px solid #2a2a2a;
+    padding: 1px 6px;
+    border-radius: 2px;
+    line-height: 1.4;
+}
+
+.tag-live {
+    color: #e0c8c8;
+    border-color: #e0c8c8;
 }
 
 a {
@@ -135,6 +213,16 @@ footer p {
     font-size: 0.8rem;
 }
 
+footer a {
+    color: #666;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+footer a:hover {
+    color: #e0c8c8;
+    border-bottom-color: #e0c8c8;
+}
+
 /* --- Entrance animations --- */
 @keyframes fadeUp {
     from {
@@ -158,7 +246,9 @@ main > section:nth-child(1) { animation-delay: 0.2s; }
 main > section:nth-child(2) { animation-delay: 0.3s; }
 main > section:nth-child(3) { animation-delay: 0.4s; }
 main > section:nth-child(4) { animation-delay: 0.5s; }
-footer { animation-delay: 0.6s; }
+main > section:nth-child(5) { animation-delay: 0.6s; }
+main > section:nth-child(6) { animation-delay: 0.7s; }
+footer { animation-delay: 0.8s; }
 
 @media (max-width: 600px) {
     .container {
