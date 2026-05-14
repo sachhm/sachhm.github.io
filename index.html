@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+                    document.documentElement.setAttribute("data-theme", t);
+                } catch (e) {}
+            })();
+        </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
@@ -24,6 +33,10 @@
                     <a href="https://github.com/sachhm" target="_blank">/github</a>
                     <a href="https://linkedin.com/in/sachh-moka" target="_blank">/linkedin</a>
                     <a href="#contact" class="cta">/contact</a>
+                    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+                        <span class="theme-toggle__dot"></span>
+                        <span class="theme-toggle__label">dark</span>
+                    </button>
                 </nav>
                 <h1>Sachh Ariel Moka</h1>
                 <p class="tagline">Software developer &amp; IT consultant &mdash; Cairns, Australia.</p>
@@ -35,7 +48,6 @@
                     <p>
                         Currently an <strong>Analyst Programmer</strong> at <strong>Mission Aviation Fellowship International</strong>; consulting taken outside work hours.
                     </p>
-                    <br>
                     <p>
                         I build software and solve IT problems for small businesses and individuals.
                         Bachelor of IT (James Cook University). Comfortable in agile teams
@@ -86,13 +98,13 @@
                         </li>
                         <li>
                             <a href="https://github.com/sachhm/Samudra" target="_blank">Samudra</a>
-                            <span class="tags"><span class="tag">Swift</span><span class="tag">iOS</span><span class="tag">Marine</span></span>
+                            <span class="tags"><span class="tag">Swift</span><span class="tag">iOS</span></span>
                             <span class="dash">&mdash;</span>
                             iPad app for marking up nautical charts with the Apple Pencil.
                         </li>   
                         <li>
                             <a href="https://github.com/sachhm/pilot-logger" target="_blank">pilot-logger</a>
-                            <span class="tags"><span class="tag">Swift</span><span class="tag">iOS</span>Aviation</span>
+                            <span class="tags"><span class="tag">Swift</span><span class="tag">iOS</span></span>
                             <span class="dash">&mdash;</span>
                             iOS flight logbook for student and recreational pilots.
                         </li>
@@ -118,6 +130,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
         <script src="js/aberration.js"></script>
         <script>
+            (function () {
+                var root = document.documentElement;
+                var btn = document.getElementById("theme-toggle");
+                var label = btn && btn.querySelector(".theme-toggle__label");
+                function paint() {
+                    if (label) label.textContent = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+                }
+                paint();
+                if (btn) {
+                    btn.addEventListener("click", function () {
+                        var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+                        root.setAttribute("data-theme", next);
+                        try { localStorage.setItem("theme", next); } catch (e) {}
+                        paint();
+                    });
+                }
+            })();
             (function () {
                 var ids = ["contact-email", "contact-inline"];
                 ids.forEach(function (id) {
